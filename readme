@@ -1,4 +1,5 @@
 LAMP Stack Deployment with Terraform
+
 This repository provides Terraform scripts to deploy a basic LAMP (Linux, Apache, MySQL, Python/PHP/Perl) stack on AWS. The infrastructure is managed using Infrastructure as Code (IaC) principles. Below is a guide on how to use the files in this repository.
 Prerequisites
 1.	AWS Account: Ensure you have an AWS account with the necessary permissions to create resources.
