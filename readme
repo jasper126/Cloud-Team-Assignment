@@ -4,6 +4,7 @@ Prerequisites
 1.	AWS Account: Ensure you have an AWS account with the necessary permissions to create resources.
 2.	Terraform Installed: Install Terraform on your local machine. You can find instructions here.
 3.	AWS CLI Installed: Install the AWS CLI on your local machine and configure it with your AWS credentials.
+
 Getting Started
 1.	Clone the Repository:
 bashCopy code
@@ -20,9 +21,8 @@ terraform apply -var-file=secrets.tfvar
 5.	Review Changes: Terraform will display the planned changes. Type yes to proceed with the deployment.
 6.	Wait for Deployment: Allow Terraform to provision the infrastructure. This may take a few minutes.
 7.	Access the Application: Once deployment is complete, find the public IP or DNS of the EC2 instance and access it in a web browser.
-8.	Cleanup (Optional): If you want to destroy the created resources, run:
-bashCopy code
-terraform destroy -var-file=secrets.tfvar 
+
+
 Directory Structure
 •	main.tf: Main Terraform script containing the infrastructure configuration.
 •	userdata.sh: User data script executed on EC2 instance launch.
@@ -31,6 +31,8 @@ Directory Structure
 •	backend.tf: Configuration for Terraform backend using S3 and DynamoDB.
 •	network.tf: Configuration for VPC, subnets, and networking.
 •	README.md: Documentation on how to use the scripts.
+
+
 Notes
 •	Make sure to replace placeholder values in the Terraform scripts with your specific configurations.
 •	This setup is a basic template and may require additional customization based on your use case and security requirements.
