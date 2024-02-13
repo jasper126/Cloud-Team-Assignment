@@ -1,41 +1,37 @@
-LAMP Stack Deployment with Terraform
-
-This repository provides Terraform scripts to deploy a basic LAMP (Linux, Apache, MySQL, Python/PHP/Perl) stack on AWS. The infrastructure is managed using Infrastructure as Code (IaC) principles. Below is a guide on how to use the files in this repository.
+Terraform Template Documentation - LAMP Stack
 Prerequisites
-1.	AWS Account: Ensure you have an AWS account with the necessary permissions to create resources.
-2.	Terraform Installed: Install Terraform on your local machine. You can find instructions here.
-3.	AWS CLI Installed: Install the AWS CLI on your local machine and configure it with your AWS credentials.
+Before using this Terraform template to deploy a LAMP stack on AWS, make sure you have the following:
 
-Getting Started
-1.	Clone the Repository:
-bashCopy code
-git clone https://github.com/your-username/lamp-stack-terraform.git cd lamp-stack-terraform 
-2.	Edit Configuration:
-•	Open secrets.tfvar and update db_username and db_password with your desired values.
-•	Modify other variables in the Terraform scripts if needed.
-3.	Initialize Terraform:
-bashCopy code
-terraform init 
-4.	Run Terraform:
-bashCopy code
-terraform apply -var-file=secrets.tfvar 
-5.	Review Changes: Terraform will display the planned changes. Type yes to proceed with the deployment.
-6.	Wait for Deployment: Allow Terraform to provision the infrastructure. This may take a few minutes.
-7.	Access the Application: Once deployment is complete, find the public IP or DNS of the EC2 instance and access it in a web browser.
+AWS Account: You need an active AWS account to deploy resources.
+Terraform Installed: Ensure you have Terraform installed on your local machine.
 
+variables.tf: This file defines variables that you can customize according to your requirements, such as VPC CIDR blocks, subnet configurations, and other parameters.
 
-Directory Structure
-•	main.tf: Main Terraform script containing the infrastructure configuration.
-•	userdata.sh: User data script executed on EC2 instance launch.
-•	script.py: Python script interacting with the RDS MySQL database.
-•	secrets.tfvar: Configuration file for sensitive information.
-•	backend.tf: Configuration for Terraform backend using S3 and DynamoDB.
-•	network.tf: Configuration for VPC, subnets, and networking.
-•	README.md: Documentation on how to use the scripts.
+main
+The main.tf file contains the main configuration for your infrastructure. It includes resources like Load Balancer, EC2 Instance, MySQL Database, and networking components. Adjust these configurations based on your needs.
 
+network
+In this file, you’ll find configurations for the VPC, Internet Gateway, subnets, and routing tables. Modify these settings to align with your network architecture.
+
+Usage
+Copy all code files
+Customization
+terraform init
+Review the Execution Plan:
+terraform plan
+Apply the Changes:
+terraform apply
+if you run in a issue try: terraform apply -lock=false
+
+variables
+to customize variables, change the configurations in the variables.tf to meet your specific requirements.
+
+userdata
+This file includes a bash script with will launch with the deployment of the EC2. This will install the software: mySQL, Python, Apache and the SSM manager. Copy this file over on your pc and change directory in the variables.tf
+
+State Management
+This Terraform template uses AWS S3 and DynamoDB to manage the state. Ensure proper AWS credentials are configured for state storage.
 
 Notes
-•	Make sure to replace placeholder values in the Terraform scripts with your specific configurations.
-•	This setup is a basic template and may require additional customization based on your use case and security requirements.
-Feel free to reach out for any questions or issues. Happy coding!
-
+AWS credentials should be configured on your machine.
+Exercise caution when making changes using Terraform to avoid unintended modifications.
