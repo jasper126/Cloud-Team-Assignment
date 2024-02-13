@@ -22,12 +22,10 @@ conn.commit()
 select_books_query = "SELECT * FROM books WHERE name = %s"
 book_name = ("Time Machine",)
 cursor.execute(select_books_query, book_name)
+
 book = cursor.fetchone()
 
 # Print information about the book
 if book:
     print("The book's name is " + book[2])  # Assuming 'name' is the third column in the 'books' table
-
-# Close the cursor and connection
-cursor.close()
 conn.close()
