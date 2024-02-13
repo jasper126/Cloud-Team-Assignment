@@ -1,4 +1,3 @@
-
 #loadbalancer ##########################################################################
 resource "aws_lb" "loadbalancer" {
   name               = "jasper-loadbalancer"
@@ -145,6 +144,8 @@ resource "aws_db_instance" "mysql_db" {
   instance_class       = "db.t2.micro"
   db_name              = "webserverdb"
   parameter_group_name = "default.mysql8.0"
+  username = var.mysql_password
+  password = var.mysql_password
   publicly_accessible  = false
   db_subnet_group_name = aws_db_subnet_group.private.id
   vpc_security_group_ids = [aws_security_group.db_sg.id]
@@ -163,6 +164,7 @@ resource "aws_security_group" "db_sg" {
     to_port     = 3306
     protocol    = "tcp"
     cidr_blocks = ["172.16.10.0/24"]
+    security_groups = [ aws_security_group.first.id ]
 }
 
 #all outbound allowed
