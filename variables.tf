@@ -59,16 +59,10 @@ variable "subnet_cidr_block" {
 }
 
 #MySQL user details ########################################################################################
-variable "mysql_username" {
-  description = "MySQL username"
-  type        = string
-  default     = "jasper" # Update with your desired MySQL username
-  sensitive   = true
-}
 
-variable "mysql_password" {
-  description = "MySQL password"
-  type        = string
-  default     = "biggenweide" # Update with your desired MySQL password
-  sensitive   = true
+data "aws_secretsmanager_secret_version" "creds" {
+  secret_id = "mySQL-db-creds1" # Update with your own created secretID in Secret management portal
+}
+locals {
+  mySQL_db_creds1 = jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string)
 }
