@@ -72,3 +72,11 @@ output "mySQL_db_creds1" {
   sensitive = true
 }
 
+output "dbsqlusername" {
+  value = local.mySQL_db_creds1.username
+  sensitive = true
+}
+output "dbsqlpassword" {
+  value = local.mySQL_db_creds1.password
+  sensitive = true
+}
