@@ -66,3 +66,9 @@ data "aws_secretsmanager_secret_version" "creds" {
 locals {
   mySQL_db_creds1 = jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string)
 }
+
+output "mySQL_db_creds1" {
+  value     = local.mySQL_db_creds1
+  sensitive = true
+}
+
