@@ -144,8 +144,8 @@ resource "aws_db_instance" "mysql_db" {
   instance_class       = "db.t2.micro"
   db_name              = "webserverdb"
   parameter_group_name = "default.mysql8.0"
-  username = var.mysql_password
-  password = var.mysql_password
+  username = local.mySQL_db_creds1.username
+  password = local.mySQL_db_creds1.password
   publicly_accessible  = false
   db_subnet_group_name = aws_db_subnet_group.private.id
   vpc_security_group_ids = [aws_security_group.db_sg.id]
